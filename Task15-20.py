@@ -84,3 +84,55 @@ def calculate_nhdf(pay):
 
 NHDF = calculate_nhdf(gross_salary)
 print(f"Your NHDF Contribution is: {NHDF}")
+
+# Task 18: Using Python or PHP or Java or Ruby or JavaScript
+# Calculate the taxable income.
+# i.e taxable_income = gross salary - (NSSF + NHDF + NHIF)
+
+def calculate_taxable_income(gross,nssf,nhdf,nhif):
+    tax_income  = gross - (nssf + nhdf + nhif)
+    return tax_income
+
+taxable_income = calculate_taxable_income(gross_salary,NSSF,NHDF,NHIF)
+print(f"Your Taxable Income is: {taxable_income}")
+
+# TASK 19: Using Python or PHP or Java or Ruby or JavaScript
+# Continue with the same program and find the person's PAYEE using the taxable income above.
+
+def calculate_payee(tax_in, relief):
+    tax_payee = 0
+    if tax_in >= 0 and tax_in <= 24000:
+        tax_payee = 0
+    elif tax_in > 24000 and tax_in <= 32333:
+        tax_payee = (((24000 * 0.1) + ((tax_in - 24000) * 0.25)) - relief)
+    elif tax_in  > 32333 and tax_in <= 500000:
+        tax_payee = (((24000 * 0.1) + (8233  * 0.25) + ((tax_in - 32333) * 0.30)) - relief)
+    elif tax_in  > 500000 and tax_in <= 800000:
+        tax_payee = (((24000 * 0.1) + (8233 * 0.25) + (467667 * 0.30) + ((tax_in - 500000) * 0.325)) - relief)
+    else:
+        tax_payee = (((24000 * 0.1) + (8233 * 0.25) + (467667 * 0.30) +  (300000 * 0.325) + ((tax_in - 800000) * 0.35)) - relief)
+    
+    return tax_payee
+
+PAYEE =  calculate_payee(taxable_income,2400)
+print(f"Your PAYEE is: {PAYEE}")
+
+# Task 20: Using Python or PHP or Java or Ruby or JavaScript
+# Continue with the same program and calculate an individual’s Net Salary using:
+# net_salary = gross_salary - (nhif + nhdf + nssf + payee)
+
+def  calculate_net_salary(gross, nhif, nhdf, nssf, payee):
+    net_salary = gross - (nhif + nhdf + nssf + payee)
+    return net_salary
+
+NET_SALARY =  calculate_net_salary(gross_salary, NHIF, NHDF, NSSF, PAYEE)
+print(f"Your Net Salary is: {NET_SALARY}")
+
+
+
+
+
+        
+    
+
+
